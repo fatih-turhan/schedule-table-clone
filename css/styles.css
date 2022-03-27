@@ -206,6 +206,14 @@ body {
 .number:hover {
   transform: scale(1.02);
 }
-.number-active {
-  background: linear-gradient((rgba(0, 0, 0, 0.1)), (rgba(0, 0, 0, 0.2)));
+.number-btn.active {
+  background-color: black;
+}
+.number.active {
+  opacity: 0.3;
+}
+.reset-btn {
+  display: block;
+  margin: 0 auto;
+  margin-top: 1rem;
 }

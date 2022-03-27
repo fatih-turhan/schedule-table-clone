@@ -28,7 +28,12 @@ container.addEventListener("click", (e) => {
   if (initialValue === selected) {
     initialValue++;
     console.log(initialValue);
-    value.textContent = initialValue;
-    e.target.style.color;
+    e.target.parentElement.classList.add("active");
+    e.target.classList.add("active");
   }
+  if (initialValue === 26) {
+    initialValue = 25;
+    // console.log("hello");
+  }
+  value.textContent = initialValue;
 });
