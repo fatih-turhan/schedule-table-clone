@@ -1,6 +1,9 @@
 const container = document.querySelector(".game-center");
 const btns = document.querySelectorAll(".number-btn");
+const numbers = document.querySelectorAll(".number");
 const value = document.querySelector(".value");
+const resetBtn = document.querySelector(".reset-btn");
+const finish = document.querySelector(".finish");
 
 let initialValue = 1;
 
@@ -32,8 +35,20 @@ container.addEventListener("click", (e) => {
     e.target.classList.add("active");
   }
   if (initialValue === 26) {
+    finish.textContent = "you finished the game";
+    value.parentElement.style.display = "none";
     initialValue = 25;
-    // console.log("hello");
   }
   value.textContent = initialValue;
+});
+
+resetBtn.addEventListener("click", () => {
+  initialValue = 1;
+  value.parentElement.style.display = "block";
+  finish.textContent = "";
+  value.textContent = initialValue;
+  const btns = document.querySelectorAll(".number-btn");
+  const numbers = document.querySelectorAll(".number");
+  btns.forEach((btn) => btn.classList.remove("active"));
+  numbers.forEach((number) => number.classList.remove("active"));
 });
