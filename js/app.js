@@ -8,23 +8,26 @@ const finish = document.querySelector(".finish");
 let initialValue = 1;
 
 value.textContent = initialValue;
-const emptyList = [];
 
-for (let i = 0; i < 25; i++) {
-  const randomNum = Math.ceil(Math.random() * 25);
-  if (!emptyList.includes(randomNum)) {
-    emptyList.push(randomNum);
-  } else {
-    i = i - 1;
+const createNumbers = () => {
+  const emptyList = [];
+  for (let i = 0; i < 25; i++) {
+    const randomNum = Math.ceil(Math.random() * 25);
+    if (!emptyList.includes(randomNum)) {
+      emptyList.push(randomNum);
+    } else {
+      i = i - 1;
+    }
   }
-}
-container.innerHTML = emptyList
-  .map((item) => {
-    return `<button class="number-btn">
-          <p class="number">${item}</p>
-        </button>`;
-  })
-  .join("");
+  container.innerHTML = emptyList
+    .map((item) => {
+      return `<button class="number-btn">
+            <p class="number">${item}</p>
+          </button>`;
+    })
+    .join("");
+};
+createNumbers();
 
 container.addEventListener("click", (e) => {
   const selected = Number(e.target.textContent);
@@ -43,6 +46,7 @@ container.addEventListener("click", (e) => {
 });
 
 resetBtn.addEventListener("click", () => {
+  createNumbers();
   initialValue = 1;
   value.parentElement.style.display = "block";
   finish.textContent = "";
