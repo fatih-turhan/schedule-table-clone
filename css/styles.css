@@ -173,12 +173,78 @@ p {
   margin-bottom: 4rem;
   text-align: center;
 }
-
+/* sidebar */
+.sidebar-all {
+  position: relative;
+}
+.sidebar-btn {
+  cursor: pointer;
+  position: fixed;
+  top: 5%;
+  right: 5%;
+  border: none;
+  background: none;
+  font-size: 2rem;
+  transition: var(--transition);
+}
+.sidebar-btn:hover {
+  transform: scale(1.2);
+}
+.aside {
+  background-color: var(--clr-grey-10);
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 80%;
+  height: 100%;
+  z-index: 100;
+  transform: translateX(-100%);
+  transition: var(--transition);
+}
+@media screen and (min-width: 800px) {
+  .aside {
+    width: 30%;
+  }
+}
+.aside.show {
+  transform: translateX(0);
+}
+.close-btn {
+  cursor: pointer;
+  position: absolute;
+  top: 1%;
+  right: 5%;
+  background-color: none;
+  border: none;
+  font-size: 2rem;
+  transition: var(--transition);
+}
+.close-btn:hover {
+  color: red;
+}
+.sidebar-links {
+  padding: 2rem;
+}
+.sidebar-links a {
+  font-size: 1.6rem;
+  text-transform: capitalize;
+  text-decoration: none;
+  display: block;
+  color: black;
+  padding: 0.5rem 0;
+  transition: var(--transition);
+}
+.sidebar-links a:hover {
+  color: red;
+}
 /* game */
-body {
+.game {
   height: 100vh;
   display: grid;
   place-items: center;
+}
+h2 {
+  text-align: center;
 }
 .game-center {
   display: grid;
@@ -193,7 +259,7 @@ body {
 }
 .number {
   margin-bottom: 0;
-  color: white;
+  /* color: white; */
   font-size: 1.75rem;
   background: black;
   border: 0.01rem solid var(--clr-white);
@@ -203,6 +269,7 @@ body {
   place-items: center;
   transition: var(--transition);
 }
+
 .number:hover {
   transform: scale(1.02);
 }

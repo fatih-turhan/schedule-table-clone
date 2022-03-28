@@ -1,3 +1,5 @@
+import "../src/toggleNav.js";
+
 const container = document.querySelector(".game-center");
 const btns = document.querySelectorAll(".number-btn");
 const numbers = document.querySelectorAll(".number");

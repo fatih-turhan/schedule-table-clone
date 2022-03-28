@@ -5,19 +5,43 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Schedule Table</title>
+    <!-- font-awesome -->
+    <script
+      src="https://kit.fontawesome.com/cd03e9dc4f.js"
+      crossorigin="anonymous"
+    ></script>
     <!-- css -->
     <link rel="stylesheet" href="./css/styles.css" />
   </head>
   <body>
+    <div class="sidebar-all">
+      <!-- btn -->
+      <button class="sidebar-btn">
+        <i class="fas fa-bars"></i>
+      </button>
+      <!-- aside -->
+      <aside class="aside">
+        <button class="close-btn">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="sidebar-links">
+          <li><a href="">classic</a></li>
+          <li><a href="">classic</a></li>
+          <li><a href="">classic</a></li>
+        </ul>
+      </aside>
+    </div>
     <section class="game">
-      <!-- value -->
-      <h2>next value: <span class="value">0</span></h2>
-      <!-- result -->
-      <h2 class="finish"></h2>
-      <div class="game-center"></div>
-      <button class="reset-btn btn">reset</button>
+      <div>
+        <!-- value -->
+        <h2>next value: <span class="value">0</span></h2>
+        <!-- result -->
+        <h2 class="finish"></h2>
+        <div class="game-center"></div>
+        <button class="reset-btn btn">reset</button>
+      </div>
     </section>
     <!-- js -->
-    <script src="./js/app.js"></script>
+    <script type="module" src="./js/app.js"></script>
   </body>
 </html>
