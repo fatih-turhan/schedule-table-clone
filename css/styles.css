@@ -259,7 +259,7 @@ h2 {
 }
 .number {
   margin-bottom: 0;
-  /* color: white; */
+  color: white;
   font-size: 1.75rem;
   background: black;
   border: 0.01rem solid var(--clr-white);

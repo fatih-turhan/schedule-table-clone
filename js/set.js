@@ -1,19 +1,27 @@
 import "../src/toggleNav.js";
 
 const container = document.querySelector(".game-center");
-const btns = document.querySelectorAll(".number-btn");
-const numbers = document.querySelectorAll(".number");
 const value = document.querySelector(".value");
 const resetBtn = document.querySelector(".reset-btn");
 const finish = document.querySelector(".finish");
+const form = document.querySelector(".form");
+const input = document.querySelector(".input");
 
 let initialValue = 1;
 value.textContent = initialValue;
 
-const createNumbers = () => {
+let inputValue;
+
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  inputValue = Number(input.value);
+  createNumbers(inputValue);
+});
+
+const createNumbers = (number) => {
   const emptyList = [];
-  for (let i = 0; i < 25; i++) {
-    const randomNum = Math.ceil(Math.random() * 25);
+  for (let i = 0; i < number; i++) {
+    const randomNum = Math.ceil(Math.random() * number);
     if (!emptyList.includes(randomNum)) {
       emptyList.push(randomNum);
     } else {
@@ -28,7 +36,7 @@ const createNumbers = () => {
     })
     .join("");
 };
-createNumbers();
+// createNumbers(30);
 
 container.addEventListener("click", (e) => {
   const selected = Number(e.target.textContent);
@@ -47,7 +55,7 @@ container.addEventListener("click", (e) => {
 });
 
 resetBtn.addEventListener("click", () => {
-  createNumbers();
+  createNumbers(inputValue);
   initialValue = 1;
   value.parentElement.style.display = "block";
   finish.textContent = "";
