@@ -6,6 +6,7 @@ const resetBtn = document.querySelector(".reset-btn");
 const finish = document.querySelector(".finish");
 const form = document.querySelector(".form");
 const input = document.querySelector(".input");
+const hide = document.querySelector(".hide");
 
 let initialValue = 1;
 value.textContent = initialValue;
@@ -15,6 +16,13 @@ let inputValue;
 form.addEventListener("submit", (e) => {
   e.preventDefault();
   inputValue = Number(input.value);
+  container.classList.remove(
+    "more-than-40",
+    "more-than-70",
+    "more-than-100",
+    "more-than-150"
+  );
+  hide.classList.remove("hide");
   createNumbers(inputValue);
 });
 
@@ -35,6 +43,18 @@ const createNumbers = (number) => {
           </button>`;
     })
     .join("");
+  if (container.children.length > 40) {
+    container.classList.add("more-than-40");
+  }
+  if (container.children.length > 70) {
+    container.classList.add("more-than-70");
+  }
+  if (container.children.length > 100) {
+    container.classList.add("more-than-100");
+  }
+  if (container.children.length > 150) {
+    container.classList.add("more-than-150");
+  }
 };
 // createNumbers(30);
 
@@ -45,11 +65,12 @@ container.addEventListener("click", (e) => {
     console.log(initialValue);
     e.target.parentElement.classList.add("active");
     e.target.classList.add("active");
+    console.log(inputValue, initialValue);
   }
-  if (initialValue === 26) {
+  if (initialValue === inputValue + 1) {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";
-    initialValue = 25;
+    initialValue = inputValue;
   }
   value.textContent = initialValue;
 });

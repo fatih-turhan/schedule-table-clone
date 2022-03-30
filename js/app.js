@@ -38,6 +38,9 @@ container.addEventListener("click", (e) => {
     e.target.parentElement.classList.add("active");
     e.target.classList.add("active");
   }
+  if (initialValue !== selected) {
+    console.log("hello");
+  }
   if (initialValue === 26) {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";

@@ -239,7 +239,7 @@ p {
 }
 /* game */
 .game {
-  height: 100vh;
+  min-height: 100vh;
   display: grid;
   place-items: center;
 }
@@ -253,6 +253,7 @@ h2 {
   width: 90vw;
   max-width: 450px;
 }
+
 .number-btn {
   border: none;
   cursor: pointer;
@@ -283,4 +284,53 @@ h2 {
   display: block;
   margin: 0 auto;
   margin-top: 1rem;
+}
+/* set yourself */
+.game-center.more-than-40 {
+  max-width: 650px;
+  grid-template-columns: repeat(7, 1fr);
+}
+.game-center.more-than-70 {
+  max-width: 650px;
+  grid-template-columns: repeat(10, 1fr);
+}
+.game-center.more-than-100 {
+  max-width: 900px;
+  grid-template-columns: repeat(15, 1fr);
+}
+.game-center.more-than-150 {
+  max-width: 1200px;
+  grid-template-columns: repeat(20, 1fr);
+}
+.form {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.input {
+  width: 80%;
+  padding: 0.5rem;
+  font-size: 1.1rem;
+  border: none;
+  background-color: var(--clr-grey-10);
+}
+.submit {
+  width: 20%;
+  border: none;
+  background-color: var(--clr-grey-2);
+  color: white;
+  text-transform: capitalize;
+  font-size: 1rem;
+  border: 0.1rem solid transparent;
+}
+.submit:hover {
+  color: var(--clr-grey-2);
+  background-color: white;
+  border: 0.1rem solid var(--clr-grey-2);
+  transition: var(--transition);
+}
+.submit::placeholder {
+  color: var(--clr-grey-2);
+}
+.hide {
+  display: none;
 }
