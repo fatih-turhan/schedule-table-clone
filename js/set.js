@@ -7,24 +7,12 @@ const finish = document.querySelector(".finish");
 const form = document.querySelector(".form");
 const input = document.querySelector(".input");
 const hide = document.querySelector(".hide");
+const btnsContainer = document.querySelector(".buttons");
 
 let initialValue = 1;
 value.textContent = initialValue;
 
 let inputValue;
-
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  inputValue = Number(input.value);
-  container.classList.remove(
-    "more-than-40",
-    "more-than-70",
-    "more-than-100",
-    "more-than-150"
-  );
-  hide.classList.remove("hide");
-  createNumbers(inputValue);
-});
 
 const createNumbers = (number) => {
   const emptyList = [];
@@ -43,20 +31,43 @@ const createNumbers = (number) => {
           </button>`;
     })
     .join("");
-  if (container.children.length > 40) {
-    container.classList.add("more-than-40");
+  hide.classList.remove("hide");
+
+  if (container.children.length === 60) {
+    container.classList.add("has-60");
   }
-  if (container.children.length > 70) {
-    container.classList.add("more-than-70");
+  if (container.children.length === 70) {
+    container.classList.add("has-70");
   }
-  if (container.children.length > 100) {
-    container.classList.add("more-than-100");
+  if (container.children.length === 80) {
+    container.classList.add("has-80");
   }
-  if (container.children.length > 150) {
-    container.classList.add("more-than-150");
+  if (container.children.length === 90) {
+    container.classList.add("has-90");
+  }
+  if (container.children.length === 100) {
+    container.classList.add("has-100");
   }
 };
-// createNumbers(30);
+
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   inputValue = Number(input.value);
+//   container.classList.remove(
+//     "more-than-40",
+//     "more-than-70",
+//     "more-than-100",
+//     "more-than-150"
+//   );
+//   hide.classList.remove("hide");
+//   createNumbers(inputValue);
+// });
+
+btnsContainer.addEventListener("click", (e) => {
+  inputValue = Number(e.target.textContent);
+  container.classList.remove("has-60", "has-70", "has-80", "has-90", "has-100");
+  createNumbers(inputValue);
+});
 
 container.addEventListener("click", (e) => {
   const selected = Number(e.target.textContent);
@@ -76,6 +87,7 @@ container.addEventListener("click", (e) => {
 });
 
 resetBtn.addEventListener("click", () => {
+  console.log(inputValue);
   createNumbers(inputValue);
   initialValue = 1;
   value.parentElement.style.display = "block";

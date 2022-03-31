@@ -240,6 +240,7 @@ p {
 /* game */
 .game {
   min-height: 100vh;
+  width: 100vw;
   display: grid;
   place-items: center;
 }
@@ -250,7 +251,7 @@ h2 {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   margin: 0 auto;
-  width: 90vw;
+  width: 95vw;
   max-width: 450px;
 }
 
@@ -261,7 +262,7 @@ h2 {
 .number {
   margin-bottom: 0;
   color: white;
-  font-size: 1.75rem;
+  font-size: 1.25rem;
   background: black;
   border: 0.01rem solid var(--clr-white);
   width: 100%;
@@ -286,24 +287,39 @@ h2 {
   margin-top: 1rem;
 }
 /* set yourself */
-.game-center.more-than-40 {
+
+.game-center.has-60 {
   max-width: 650px;
+  grid-template-columns: repeat(6, 1fr);
+}
+.game-center.has-70 {
+  max-width: 700px;
   grid-template-columns: repeat(7, 1fr);
 }
-.game-center.more-than-70 {
-  max-width: 650px;
+.game-center.has-80 {
+  max-width: 750px;
+  grid-template-columns: repeat(8, 1fr);
+}
+.game-center.has-90 {
+  max-width: 800px;
+  grid-template-columns: repeat(9, 1fr);
+}
+.game-center.has-100 {
+  max-width: 900px;
   grid-template-columns: repeat(10, 1fr);
 }
-.game-center.more-than-100 {
-  max-width: 900px;
-  grid-template-columns: repeat(15, 1fr);
-}
-.game-center.more-than-150 {
-  max-width: 1200px;
-  grid-template-columns: repeat(20, 1fr);
+
+.buttons {
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 0.1rem;
+  row-gap: 0.1rem;
+  justify-content: center;
+  margin: 1rem;
 }
 .form {
   display: flex;
+  flex-wrap: wrap;
   margin-bottom: 1rem;
 }
 .input {
