@@ -240,19 +240,29 @@ p {
 /* game */
 .game {
   min-height: 100vh;
-  width: 100vw;
   display: grid;
   place-items: center;
+  padding: 0.1rem 0;
 }
-h2 {
+h3 {
+  text-align: center;
+}
+.explain {
+  font-size: 1.1rem;
+  padding: 0 1rem;
+  color: var(--clr-grey-4);
+  max-width: 28rem;
+  margin-left: auto;
+  margin-right: auto;
+
   text-align: center;
 }
 .game-center {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
-  margin: 0 auto;
   width: 95vw;
   max-width: 450px;
+  margin: 0 auto;
 }
 
 .number-btn {
@@ -281,12 +291,15 @@ h2 {
 .number.active {
   opacity: 0.3;
 }
-.reset-btn {
+.reset-btns {
   display: block;
   margin: 0 auto;
   margin-top: 1rem;
 }
 /* set yourself */
+.heading {
+  text-align: center;
+}
 
 .game-center.has-60 {
   max-width: 650px;
@@ -308,6 +321,14 @@ h2 {
   max-width: 900px;
   grid-template-columns: repeat(10, 1fr);
 }
+.game-center.bigger-than-50 {
+  max-width: 900px;
+  grid-template-columns: repeat(10, 1fr);
+}
+.game-center.bigger-than-150 {
+  max-width: 1500px;
+  grid-template-columns: repeat(25, 1fr);
+}
 
 .buttons {
   display: flex;
@@ -318,19 +339,21 @@ h2 {
   margin: 1rem;
 }
 .form {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  grid-template-columns: 3fr 1fr;
   margin-bottom: 1rem;
+  width: 90%;
+  max-width: 400px;
+  margin: 0 auto;
+  margin-top: 1rem;
 }
 .input {
-  width: 80%;
   padding: 0.5rem;
   font-size: 1.1rem;
   border: none;
   background-color: var(--clr-grey-10);
 }
 .submit {
-  width: 20%;
   border: none;
   background-color: var(--clr-grey-2);
   color: white;
@@ -349,4 +372,7 @@ h2 {
 }
 .hide {
   display: none;
+}
+.reset-btns-container {
+  display: flex;
 }

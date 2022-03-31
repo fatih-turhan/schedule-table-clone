@@ -8,6 +8,8 @@ const form = document.querySelector(".form");
 const input = document.querySelector(".input");
 const hide = document.querySelector(".hide");
 const btnsContainer = document.querySelector(".buttons");
+const exp = document.querySelector(".explain");
+const resetBuildBtn = document.querySelector(".reset-build-btn");
 
 let initialValue = 1;
 value.textContent = initialValue;
@@ -33,39 +35,47 @@ const createNumbers = (number) => {
     .join("");
   hide.classList.remove("hide");
 
-  if (container.children.length === 60) {
-    container.classList.add("has-60");
+  // if (container.children.length === 60) {
+  //   container.classList.add("has-60");
+  // }
+  // if (container.children.length === 70) {
+  //   container.classList.add("has-70");
+  // }
+  // if (container.children.length === 80) {
+  //   container.classList.add("has-80");
+  // }
+  // if (container.children.length === 90) {
+  //   container.classList.add("has-90");
+  // }
+  // if (container.children.length === 100) {
+  //   container.classList.add("has-100");
+  // }
+  console.log(container.children.length);
+  if (container.children.length >= 50) {
+    container.classList.add("bigger-than-50");
   }
-  if (container.children.length === 70) {
-    container.classList.add("has-70");
-  }
-  if (container.children.length === 80) {
-    container.classList.add("has-80");
-  }
-  if (container.children.length === 90) {
-    container.classList.add("has-90");
-  }
-  if (container.children.length === 100) {
-    container.classList.add("has-100");
+  if (container.children.length >= 150) {
+    container.classList.add("bigger-than-150");
   }
 };
 
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   inputValue = Number(input.value);
-//   container.classList.remove(
-//     "more-than-40",
-//     "more-than-70",
-//     "more-than-100",
-//     "more-than-150"
-//   );
-//   hide.classList.remove("hide");
-//   createNumbers(inputValue);
-// });
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  inputValue = Number(input.value);
+
+  hide.classList.remove("hide");
+  createNumbers(inputValue);
+});
 
 btnsContainer.addEventListener("click", (e) => {
   inputValue = Number(e.target.textContent);
-  container.classList.remove("has-60", "has-70", "has-80", "has-90", "has-100");
+
+  // hide when
+  btnsContainer.style.display = "none";
+  form.style.display = "none";
+  container.classList.remove("bigger-than-50", "bigger-than-150");
+
+  exp.textContent = ``;
   createNumbers(inputValue);
 });
 
@@ -97,4 +107,10 @@ resetBtn.addEventListener("click", () => {
   const numbers = document.querySelectorAll(".number");
   btns.forEach((btn) => btn.classList.remove("active"));
   numbers.forEach((number) => number.classList.remove("active"));
+});
+
+resetBuildBtn.addEventListener("click", () => {
+  btnsContainer.style.display = "flex";
+  form.style.display = "grid";
+  hide.classList.add("hide");
 });
