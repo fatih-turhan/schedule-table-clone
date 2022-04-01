@@ -1,5 +1,6 @@
 import "../src/toggleNav.js";
 
+// sellect elements
 const container = document.querySelector(".game-center");
 const value = document.querySelector(".value");
 const resetBtn = document.querySelector(".reset-btn");
@@ -11,12 +12,16 @@ const btnsContainer = document.querySelector(".buttons");
 const exp = document.querySelector(".explain");
 const resetBuildBtn = document.querySelector(".reset-build-btn");
 
+// define value
 let initialValue = 1;
 value.textContent = initialValue;
 
+// global inputValue
 let inputValue;
 
+// create list of random numbers
 const createNumbers = (number) => {
+  // create list
   const emptyList = [];
   for (let i = 0; i < number; i++) {
     const randomNum = Math.ceil(Math.random() * number);
@@ -26,6 +31,7 @@ const createNumbers = (number) => {
       i = i - 1;
     }
   }
+  // add the container
   container.innerHTML = emptyList
     .map((item) => {
       return `<button class="number-btn">
@@ -33,24 +39,10 @@ const createNumbers = (number) => {
           </button>`;
     })
     .join("");
-  hide.classList.remove("hide");
 
-  // if (container.children.length === 60) {
-  //   container.classList.add("has-60");
-  // }
-  // if (container.children.length === 70) {
-  //   container.classList.add("has-70");
-  // }
-  // if (container.children.length === 80) {
-  //   container.classList.add("has-80");
-  // }
-  // if (container.children.length === 90) {
-  //   container.classList.add("has-90");
-  // }
-  // if (container.children.length === 100) {
-  //   container.classList.add("has-100");
-  // }
-  console.log(container.children.length);
+  // display numbers
+  hide.classList.remove("hide");
+  // add css based on number
   if (container.children.length >= 50) {
     container.classList.add("bigger-than-50");
   }
@@ -59,28 +51,42 @@ const createNumbers = (number) => {
   }
 };
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  inputValue = Number(input.value);
-
-  hide.classList.remove("hide");
-  createNumbers(inputValue);
-});
-
-btnsContainer.addEventListener("click", (e) => {
-  inputValue = Number(e.target.textContent);
-
+const createFunction = () => {
   // hide when
   btnsContainer.style.display = "none";
   form.style.display = "none";
   container.classList.remove("bigger-than-50", "bigger-than-150");
-
   exp.textContent = ``;
+  // create new Numbers
   createNumbers(inputValue);
+};
+
+// create numbers from input value
+form.addEventListener("submit", (e) => {
+  e.preventDefault();
+  // get value from input
+  inputValue = Number(input.value);
+  if (!inputValue) {
+    exp.textContent = `please enter value to from or sellect buttons`;
+  } else {
+    if (inputValue <= 250) {
+      createFunction();
+    } else {
+      exp.textContent = `number should be between 0 250`;
+    }
+  }
+});
+
+// create numbers from button value
+btnsContainer.addEventListener("click", (e) => {
+  // get value from input
+  inputValue = Number(e.target.textContent);
+  createFunction();
 });
 
 container.addEventListener("click", (e) => {
   const selected = Number(e.target.textContent);
+  // increase if selected true
   if (initialValue === selected) {
     initialValue++;
     console.log(initialValue);
@@ -88,6 +94,7 @@ container.addEventListener("click", (e) => {
     e.target.classList.add("active");
     console.log(inputValue, initialValue);
   }
+  // stop game
   if (initialValue === inputValue + 1) {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";
@@ -96,21 +103,27 @@ container.addEventListener("click", (e) => {
   value.textContent = initialValue;
 });
 
-resetBtn.addEventListener("click", () => {
-  console.log(inputValue);
-  createNumbers(inputValue);
+// reset all
+const resetFunction = () => {
   initialValue = 1;
   value.parentElement.style.display = "block";
   finish.textContent = "";
   value.textContent = initialValue;
+  // remove dark from all btns
   const btns = document.querySelectorAll(".number-btn");
   const numbers = document.querySelectorAll(".number");
   btns.forEach((btn) => btn.classList.remove("active"));
   numbers.forEach((number) => number.classList.remove("active"));
+};
+
+resetBtn.addEventListener("click", () => {
+  resetFunction();
+  createNumbers(inputValue);
 });
 
 resetBuildBtn.addEventListener("click", () => {
   btnsContainer.style.display = "flex";
   form.style.display = "grid";
   hide.classList.add("hide");
+  resetFunction();
 });
