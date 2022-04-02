@@ -12,6 +12,47 @@ const btnsContainer = document.querySelector(".buttons");
 const exp = document.querySelector(".explain");
 const resetBuildBtn = document.querySelector(".reset-build-btn");
 
+// ---times
+// elements
+const getTens = document.querySelector(".tens");
+const getSec = document.querySelector(".seconds");
+const getMin = document.querySelector(".minutes");
+
+// init values
+let tens = 0;
+let seconds = 0;
+let minutes = 0;
+
+// increase fucntionaltiy
+let interval;
+const increase = () => {
+  tens++;
+  if (tens <= 9) {
+    getTens.innerHTML = "0" + tens;
+  }
+  if (tens > 9) {
+    getTens.innerHTML = tens;
+  }
+  if (tens > 99) {
+    seconds++;
+    getSec.innerHTML = "0" + seconds;
+    tens = 0;
+    getTens.innerHTML = "0" + 0;
+  }
+  if (seconds > 9) {
+    getSec.innerHTML = seconds;
+  }
+  if (seconds > 59) {
+    minutes++;
+    getMin.innerHTML = "0" + minutes;
+    seconds = 0;
+    getSec = "0" + 0;
+  }
+  if (minutes > 9) {
+    minutes.innerHTML = minutes;
+  }
+};
+
 // define value
 let initialValue = 1;
 value.textContent = initialValue;
@@ -93,12 +134,17 @@ container.addEventListener("click", (e) => {
     e.target.parentElement.classList.add("active");
     e.target.classList.add("active");
     console.log(inputValue, initialValue);
+    // start time
+    clearInterval(interval);
+    interval = setInterval(increase, 10);
   }
   // stop game
   if (initialValue === inputValue + 1) {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";
     initialValue = inputValue;
+    // clear time
+    clearInterval(interval);
   }
   value.textContent = initialValue;
 });
@@ -114,6 +160,14 @@ const resetFunction = () => {
   const numbers = document.querySelectorAll(".number");
   btns.forEach((btn) => btn.classList.remove("active"));
   numbers.forEach((number) => number.classList.remove("active"));
+  // reset
+  clearInterval(interval);
+  tens = "00";
+  seconds = "00";
+  minutes = "00";
+  getTens.innerHTML = tens;
+  getSec.innerHTML = seconds;
+  getMin.innerHTML = minutes;
 };
 
 resetBtn.addEventListener("click", () => {
