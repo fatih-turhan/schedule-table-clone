@@ -1,4 +1,5 @@
 import "../src/toggleNav.js";
+import { getLocal, setLocal } from "../src/localStorage.js";
 
 // elements
 const container = document.querySelector(".game-center");
@@ -7,6 +8,12 @@ const numbers = document.querySelectorAll(".number");
 const value = document.querySelector(".value");
 const resetBtn = document.querySelector(".reset-btn");
 const finish = document.querySelector(".finish");
+const bestTime = document.querySelector(".best-time");
+
+const localItem = getLocal("time");
+if (localItem) {
+  bestTime.textContent = `Your Best: ${localItem}`;
+}
 
 // ---times
 
@@ -14,6 +21,7 @@ const finish = document.querySelector(".finish");
 const getTens = document.querySelector(".tens");
 const getSec = document.querySelector(".seconds");
 const getMin = document.querySelector(".minutes");
+// const timeResult = document.querySelector(".time");
 
 // init values
 let tens = 0;
@@ -91,6 +99,13 @@ container.addEventListener("click", (e) => {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";
     initialValue = 25;
+
+    let resultTime = getMin.textContent + getSec.textContent + getTens.textContent;
+    // resultTime = Number(resultTime);
+    // console.log(resultTime);
+
+    setLocal("time", resultTime);
+
     // clear time
     clearInterval(interval);
   }

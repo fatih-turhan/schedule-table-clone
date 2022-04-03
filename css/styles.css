@@ -247,10 +247,12 @@ p {
 .grid {
   display: flex;
   justify-content: center;
+  align-items: center;
   column-gap: 1rem;
 }
 h3 {
   text-align: center;
+  margin-bottom: 0.4rem;
 }
 .explain {
   font-size: 1.1rem;
