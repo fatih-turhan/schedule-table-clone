@@ -12,7 +12,7 @@ const bestTime = document.querySelector(".best-time");
 
 const localItem = getLocal("time");
 if (localItem) {
-  bestTime.textContent = `Your Best: ${localItem}`;
+  bestTime.textContent = `Your Best:${localItem}`;
 }
 
 // ---times
@@ -100,14 +100,13 @@ container.addEventListener("click", (e) => {
     value.parentElement.style.display = "none";
     initialValue = 25;
 
-    let resultTime = getMin.textContent + getSec.textContent + getTens.textContent;
-    // resultTime = Number(resultTime);
-    // console.log(resultTime);
-
-    setLocal("time", resultTime);
-
     // clear time
     clearInterval(interval);
+
+    let resultTime = getMin.textContent + getSec.textContent + getTens.textContent;
+    setLocal("time", resultTime);
+
+    bestTime.textContent = `Your best:${getLocal("time")}`;
   }
   value.textContent = initialValue;
 });

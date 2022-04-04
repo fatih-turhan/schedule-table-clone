@@ -1,4 +1,5 @@
 import "../src/toggleNav.js";
+import { setLocal, getLocal } from "../src/localStorage.js";
 
 // sellect elements
 const container = document.querySelector(".game-center");
@@ -11,6 +12,7 @@ const hide = document.querySelector(".hide");
 const btnsContainer = document.querySelector(".buttons");
 const exp = document.querySelector(".explain");
 const resetBuildBtn = document.querySelector(".reset-build-btn");
+const bestTime = document.querySelector(".best-time");
 
 // ---times
 // elements
@@ -95,7 +97,7 @@ const createNumbers = (number) => {
 const createFunction = () => {
   // hide when
   btnsContainer.style.display = "none";
-  form.style.display = "none";
+  // form.style.display = "none";
   container.classList.remove("bigger-than-50", "bigger-than-150");
   exp.textContent = ``;
   // create new Numbers
@@ -103,26 +105,33 @@ const createFunction = () => {
 };
 
 // create numbers from input value
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  // get value from input
-  inputValue = Number(input.value);
-  if (!inputValue) {
-    exp.textContent = `please enter value to from or sellect buttons`;
-  } else {
-    if (inputValue <= 250) {
-      createFunction();
-    } else {
-      exp.textContent = `number should be between 0 250`;
-    }
-  }
-});
+// form.addEventListener("submit", (e) => {
+//   e.preventDefault();
+//   inputValue = Number(input.value);
+//   if (!inputValue) {
+//     exp.textContent = `please enter value to from or sellect buttons`;
+//   } else {
+//     if (inputValue <= 250) {
+//       createFunction();
+//     } else {
+//       exp.textContent = `number should be between 0 250`;
+//     }
+//   }
+// });
 
 // create numbers from button value
 btnsContainer.addEventListener("click", (e) => {
   // get value from input
   inputValue = Number(e.target.textContent);
   createFunction();
+  // inputValue
+  console.log(inputValue);
+  const localItem = getLocal(inputValue);
+  if (localItem) {
+    bestTime.textContent = `Your best:${getLocal(inputValue)}`;
+  } else {
+    bestTime.textContent = ``;
+  }
 });
 
 container.addEventListener("click", (e) => {
@@ -143,8 +152,14 @@ container.addEventListener("click", (e) => {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";
     initialValue = inputValue;
+
     // clear time
     clearInterval(interval);
+
+    let resultTime = getMin.textContent + getSec.textContent + getTens.textContent;
+    setLocal(inputValue, resultTime);
+
+    bestTime.textContent = `Your best:${getLocal(inputValue)}`;
   }
   value.textContent = initialValue;
 });
@@ -177,7 +192,7 @@ resetBtn.addEventListener("click", () => {
 
 resetBuildBtn.addEventListener("click", () => {
   btnsContainer.style.display = "flex";
-  form.style.display = "grid";
+  // form.style.display = "grid";
   hide.classList.add("hide");
   resetFunction();
 });
