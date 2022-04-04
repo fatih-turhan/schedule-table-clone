@@ -104,21 +104,6 @@ const createFunction = () => {
   createNumbers(inputValue);
 };
 
-// create numbers from input value
-// form.addEventListener("submit", (e) => {
-//   e.preventDefault();
-//   inputValue = Number(input.value);
-//   if (!inputValue) {
-//     exp.textContent = `please enter value to from or sellect buttons`;
-//   } else {
-//     if (inputValue <= 250) {
-//       createFunction();
-//     } else {
-//       exp.textContent = `number should be between 0 250`;
-//     }
-//   }
-// });
-
 // create numbers from button value
 btnsContainer.addEventListener("click", (e) => {
   // get value from input
