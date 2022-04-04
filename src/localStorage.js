@@ -3,8 +3,7 @@ import addColon from "./addColon.js";
 const setLocal = (name, number) => {
   const newNumber = Number(number);
   const getLocalItem = Number(localStorage.getItem(name));
-  // console.log(newNumber, getLocalItem);
-  console.log(name);
+
   if (getLocalItem) {
     if (newNumber < getLocalItem) {
       localStorage.setItem(name, number);

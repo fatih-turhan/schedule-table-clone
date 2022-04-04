@@ -3,8 +3,6 @@ import { getLocal, setLocal } from "../src/localStorage.js";
 
 // elements
 const container = document.querySelector(".game-center");
-const btns = document.querySelectorAll(".number-btn");
-const numbers = document.querySelectorAll(".number");
 const value = document.querySelector(".value");
 const resetBtn = document.querySelector(".reset-btn");
 const finish = document.querySelector(".finish");
@@ -15,13 +13,11 @@ if (localItem) {
   bestTime.textContent = `Your Best:${localItem}`;
 }
 
-// ---times
-
+// ---TIMES
 // elements
 const getTens = document.querySelector(".tens");
 const getSec = document.querySelector(".seconds");
 const getMin = document.querySelector(".minutes");
-// const timeResult = document.querySelector(".time");
 
 // init values
 let tens = 0;
@@ -57,10 +53,11 @@ const increase = () => {
     minutes.innerHTML = minutes;
   }
 };
-
+// initial value
 let initialValue = 1;
 value.textContent = initialValue;
 
+// random numbers
 const createNumbers = () => {
   const emptyList = [];
   for (let i = 0; i < 25; i++) {
@@ -99,24 +96,24 @@ container.addEventListener("click", (e) => {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";
     initialValue = 25;
-
     // clear time
     clearInterval(interval);
-
+    // get time
     let resultTime = getMin.textContent + getSec.textContent + getTens.textContent;
     setLocal("time", resultTime);
-
+    // show best time
     bestTime.textContent = `Your best:${getLocal("time")}`;
   }
   value.textContent = initialValue;
 });
-
+// reset everything
 resetBtn.addEventListener("click", () => {
   createNumbers();
   initialValue = 1;
   value.parentElement.style.display = "block";
   finish.textContent = "";
   value.textContent = initialValue;
+  // remove background from all
   const btns = document.querySelectorAll(".number-btn");
   const numbers = document.querySelectorAll(".number");
   btns.forEach((btn) => btn.classList.remove("active"));

@@ -6,15 +6,13 @@ const container = document.querySelector(".game-center");
 const value = document.querySelector(".value");
 const resetBtn = document.querySelector(".reset-btn");
 const finish = document.querySelector(".finish");
-const form = document.querySelector(".form");
-const input = document.querySelector(".input");
 const hide = document.querySelector(".hide");
 const btnsContainer = document.querySelector(".buttons");
 const exp = document.querySelector(".explain");
 const resetBuildBtn = document.querySelector(".reset-build-btn");
 const bestTime = document.querySelector(".best-time");
 
-// ---times
+// ---TIMES
 // elements
 const getTens = document.querySelector(".tens");
 const getSec = document.querySelector(".seconds");
@@ -97,7 +95,6 @@ const createNumbers = (number) => {
 const createFunction = () => {
   // hide when
   btnsContainer.style.display = "none";
-  // form.style.display = "none";
   container.classList.remove("bigger-than-50", "bigger-than-150");
   exp.textContent = ``;
   // create new Numbers
@@ -109,8 +106,7 @@ btnsContainer.addEventListener("click", (e) => {
   // get value from input
   inputValue = Number(e.target.textContent);
   createFunction();
-  // inputValue
-  console.log(inputValue);
+  // if local storage have time give time
   const localItem = getLocal(inputValue);
   if (localItem) {
     bestTime.textContent = `Your best:${getLocal(inputValue)}`;
@@ -124,7 +120,6 @@ container.addEventListener("click", (e) => {
   // increase if selected true
   if (initialValue === selected) {
     initialValue++;
-    console.log(initialValue);
     e.target.parentElement.classList.add("active");
     e.target.classList.add("active");
     console.log(inputValue, initialValue);
@@ -137,13 +132,12 @@ container.addEventListener("click", (e) => {
     finish.textContent = "you finished the game";
     value.parentElement.style.display = "none";
     initialValue = inputValue;
-
     // clear time
     clearInterval(interval);
-
+    // get finish time
     let resultTime = getMin.textContent + getSec.textContent + getTens.textContent;
     setLocal(inputValue, resultTime);
-
+    // if time is better than best show new time
     bestTime.textContent = `Your best:${getLocal(inputValue)}`;
   }
   value.textContent = initialValue;
@@ -170,14 +164,15 @@ const resetFunction = () => {
   getMin.innerHTML = minutes;
 };
 
+// reset numbers
 resetBtn.addEventListener("click", () => {
   resetFunction();
   createNumbers(inputValue);
 });
 
+// reset build
 resetBuildBtn.addEventListener("click", () => {
   btnsContainer.style.display = "flex";
-  // form.style.display = "grid";
   hide.classList.add("hide");
   resetFunction();
 });
